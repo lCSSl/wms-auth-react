@@ -27,7 +27,7 @@ class Login extends Component {
 
   componentDidMount() {
     console.log(this.props);
-
+    this.props.ResetUserState();
     setTimeout(() => {
       this.setState({loading: false});
     }, 1000);
@@ -38,16 +38,16 @@ class Login extends Component {
     login({
       username: userCode,
       password: userPassword
-    }).then(res=>{
+    }).then(res => {
       this.props.SetUserState(res);
       // 获得URL参数
       const query_params = new URLSearchParams(this.props.location.search);
       const redirectURL = query_params.get("redirectURL");
       const localRedirectURL = storageUtils.get("redirectURL");
       storageUtils.remove("redirectURL");
-      window.location.href = redirectURL?redirectURL:localRedirectURL;
-    }).catch(err=>{
-      console.log("catch",err);
+      window.location.href = redirectURL ? redirectURL : localRedirectURL;
+    }).catch(err => {
+      console.log("catch", err);
     });
     // if (response.code===200){
     //   const user = response.data
@@ -68,9 +68,9 @@ class Login extends Component {
     if (user && user.userId) {
       return <Redirect to="/"/>
     }
-    const mmo={
-      userCode:"admin",
-      userPassword:"123456"
+    const mmo = {
+      userCode: "admin",
+      userPassword: "123456"
     };
     return (
       <div className="login">
