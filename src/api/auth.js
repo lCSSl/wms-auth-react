@@ -1,6 +1,6 @@
 import request from "../utils/request";
 
-const headers = {
+/*const headers = {
   'Content-Type': 'application/x-www-form-urlencoded'
 }
 
@@ -62,13 +62,54 @@ function getProtocol() {
     url: `${window.location.href}/protocol.html`,
     method: 'get',
   });
+}*/
+
+const client_id = 'web'
+const client_secret = '123456'
+const scope = 'server'
+
+// 登录方法
+function login(data) {
+  return request({
+    url: '/auth/login',
+    method: 'post',
+    data
+  })
 }
 
+// 刷新方法
+function refreshToken() {
+  return request({
+    url: '/auth/refresh',
+    method: 'post'
+  })
+}
+
+// 获取用户详细信息
+function getInfo() {
+  return request({
+    url: '/system/user/getInfo',
+    method: 'get'
+  })
+}
+
+// 退出方法
+function logout() {
+  return request({
+    url: '/auth/logout',
+    method: 'delete'
+  })
+}
+function getCodeImg() {
+  return request({
+    url: '/code',
+    method: 'get'
+  })
+}
 export {
-  register,
   login,
-  refreshAuth,
+  refreshToken,
   logout,
-  getUserByUsername,
-  getProtocol
+  getCodeImg,
+  getInfo,
 }

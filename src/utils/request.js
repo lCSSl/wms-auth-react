@@ -7,6 +7,8 @@ import ErrorBoundary from "antd/es/alert/ErrorBoundary";
 // 创建一个错误
 function errorCreate(msg) {
   const err = new ErrorBoundary({error: new Error(msg)}, {});
+  console.log(msg)
+  console.log(err)
   errorLog(err.props.error);
   throw err.props.error;
 }
@@ -54,7 +56,7 @@ service.interceptors.response.use(
     // dataAxios 是 axios 返回数据中的 data
     const dataAxios = response.data;
     // 这个状态码是和后端约定的
-    const {code, data, message} = dataAxios;
+    const {code, data, msg} = dataAxios;
     // 根据 code 进行判断
     if (code === undefined) {
       // 如果没有 code 代表这不是项目后端开发的接口
@@ -76,11 +78,11 @@ service.interceptors.response.use(
           break;
         case 'xxx':
           // [ 示例 ] 其它和后台约定的 code
-          errorCreate(`[ code: ${code} ] ${message}: ${response.config.url}`);
+          errorCreate(`[ code: ${code} ] ${msg}: ${response.config.url}`);
           break;
         default:
           // 不是正确的 code
-          errorCreate(`${message}`);
+          errorCreate(`${msg}`);
           break;
       }
     }

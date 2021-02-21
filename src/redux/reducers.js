@@ -16,24 +16,26 @@ import {
 function UserState(state={}, action){
   switch (action.type) {
     case SET_USER_STATE:{
-      const {userInfo, access_token, refresh_token} = action.data;
+      const {access_token,expires_in , userInfo,refresh_token} = action.data;
       //状态赋值
       state.userInfo = userInfo;
       state.accessToken = access_token;
       state.refreshToken = refresh_token;
       //保存到cookie
-      PcCookie.set(Key.userInfoKey, userInfo)
       PcCookie.set(Key.accessTokenKey, access_token)
-      PcCookie.set(Key.refreshTokenKey, refresh_token)
+      PcCookie.set(Key.accessExpiresInKey, expires_in)
+      // PcCookie.set(Key.userInfoKey, userInfo)
+      // PcCookie.set(Key.refreshTokenKey, refresh_token)
       return state;
     };break;
     case RESET_USER_STATE:{
       state.userInfo = null;
       state.accessToken = null;
       state.refreshToken = null;
-      PcCookie.remove(Key.userInfoKey);
       PcCookie.remove(Key.accessTokenKey);
-      PcCookie.remove(Key.refreshTokenKey);
+      PcCookie.remove(Key.accessExpiresInKey);
+      // PcCookie.remove(Key.userInfoKey);
+      // PcCookie.remove(Key.refreshTokenKey);
       return state;
     }break;
     default:

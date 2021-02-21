@@ -2,9 +2,10 @@ import Cookies from 'js-cookie'
 
 // Cookie的key值
 export const Key = {
-  accessTokenKey: 'accessToken', // 访问令牌在cookie的key值
-  refreshTokenKey: 'refreshToken', // 刷新令牌在cookie的key值
-  userInfoKey: 'userInfo'
+  accessTokenKey: 'Access-Token', // 访问令牌在cookie的key值
+  accessExpiresInKey: 'Access-Expires-In', // 令牌在过期时长
+  refreshTokenKey: 'refreshToken', // 刷新令牌在cookie的key值(暂未使用)
+  userInfoKey: 'userInfo' //(暂未使用)
 }
 
 class CookieClass {

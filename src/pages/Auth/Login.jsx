@@ -45,22 +45,10 @@ class Login extends Component {
       const redirectURL = query_params.get("redirectURL");
       const localRedirectURL = storageUtils.get("redirectURL");
       storageUtils.remove("redirectURL");
-      window.location.href = redirectURL ? redirectURL : localRedirectURL;
+      // window.location.href = redirectURL ? redirectURL : localRedirectURL;
     }).catch(err => {
       console.log("catch", err);
     });
-    // if (response.code===200){
-    //   const user = response.data
-    //   storageUtils.removeUser();
-    //   storageUtils.saveUser(user);
-    //   memoryUtils.user_key = storageUtils.getUser();
-    //   message.success(response.message);
-    //   this.props.history.replace("/");
-    // }else if (response.code===401){
-    //   message.error(response.message);
-    // }else if (response.code===500){
-    //   message.error(response.message);
-    // }
   };
 
   render() {
