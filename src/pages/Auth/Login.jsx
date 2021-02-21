@@ -45,7 +45,7 @@ class Login extends Component {
       const redirectURL = query_params.get("redirectURL");
       const localRedirectURL = storageUtils.get("redirectURL");
       storageUtils.remove("redirectURL");
-      // window.location.href = redirectURL ? redirectURL : localRedirectURL;
+      window.location.href = redirectURL ? redirectURL : localRedirectURL;
     }).catch(err => {
       console.log("catch", err);
     });
